@@ -1,3 +1,4 @@
+include ':models'
 include ':services:address-service'
 include ':services:apparatus-service'
 include ':services:facility-service'
