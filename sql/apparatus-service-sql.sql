@@ -5,16 +5,20 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 -- Create tables --
 CREATE TABLE apparatus_type (
 	type_id VARCHAR( 3 ) PRIMARY KEY,
-	type_name VARCHAR ( 50 ) NOT NULL,
+	type_name VARCHAR ( 50 ) UNIQUE NOT NULL,
 	category VARCHAR ( 30 ) NOT NULL
 );
 
 CREATE TABLE apparatus (
 	apparatus_id uuid DEFAULT uuid_generate_v4 () PRIMARY KEY,
 	apparatus_name VARCHAR ( 8 ) UNIQUE NOT NULL,
-	apparatus_type VARCHAR ( 2 ) NOT NULL,
-	assigned_location VARCHAR ( 3 ) NOT NULL
-);
+	apparatus_type VARCHAR ( 3 ) NOT NULL,
+	assigned_location VARCHAR ( 3 ) NOT NULL,
+	CONSTRAINT fk_apparatus_type 
+		FOREIGN KEY (apparatus_type)
+		REFERENCES apparatus_type (type_id)
+		ON UPDATE NO ACTION
+		ON DELETE NO ACTION);
 
 -- Populate tables --
 INSERT INTO apparatus_type (type_id, type_name, category)
