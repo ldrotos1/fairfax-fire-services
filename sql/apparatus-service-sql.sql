@@ -4,24 +4,24 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- Create tables --
 CREATE TABLE apparatus_type (
-	type_id VARCHAR( 3 ) PRIMARY KEY,
-	type_name VARCHAR ( 50 ) UNIQUE NOT NULL,
-	category VARCHAR ( 30 ) NOT NULL
+	apparatus_type_id VARCHAR( 3 ) PRIMARY KEY,
+	apparatus_type_name VARCHAR ( 50 ) UNIQUE NOT NULL,
+	apparatus_type_category VARCHAR ( 30 ) NOT NULL
 );
 
 CREATE TABLE apparatus (
 	apparatus_id uuid DEFAULT uuid_generate_v4 () PRIMARY KEY,
 	apparatus_name VARCHAR ( 8 ) UNIQUE NOT NULL,
-	apparatus_type VARCHAR ( 3 ) NOT NULL,
+	apparatus_type_id VARCHAR ( 3 ) NOT NULL,
 	assigned_location VARCHAR ( 3 ) NOT NULL,
 	CONSTRAINT fk_apparatus_type 
-		FOREIGN KEY (apparatus_type)
-		REFERENCES apparatus_type (type_id)
+		FOREIGN KEY (apparatus_type_id)
+		REFERENCES apparatus_type (apparatus_type_id)
 		ON UPDATE NO ACTION
 		ON DELETE NO ACTION);
 
 -- Populate tables --
-INSERT INTO apparatus_type (type_id, type_name, category)
+INSERT INTO apparatus_type (apparatus_type_id, apparatus_type_name, apparatus_type_category)
 VALUES(1, 'Ambulance', 'Medical'),
 (2, 'Ambulance Bus', 'Medical'),
 (3, 'Battalion Chief', 'Command'),
@@ -52,7 +52,7 @@ VALUES(1, 'Ambulance', 'Medical'),
 (28, 'Utility', 'Support'),
 (29, 'Volunteer Chief', 'Command');
 
-INSERT INTO apparatus (apparatus_name, apparatus_type, assigned_location)
+INSERT INTO apparatus (apparatus_name, apparatus_type_id, assigned_location)
 VALUES ('A401', '1', '401'),
 ('A402', '1', '402'),
 ('A405', '1', '405'),
