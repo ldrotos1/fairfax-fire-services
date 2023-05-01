@@ -1,5 +1,6 @@
 include ':models'
 include ':servers:config-server'
+include ':servers:naming-server'
 include ':services:address-service'
 include ':services:apparatus-service'
 include ':services:facility-service'
