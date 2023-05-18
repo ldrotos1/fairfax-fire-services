@@ -1,6 +1,7 @@
 package org.fairfax.fire.facilityservice.mapper;
 
 import org.fairfax.fire.facilityservice.entity.StationEntity;
+import org.fairfax.fire.models.Address;
 import org.fairfax.fire.models.Station;
 import org.fairfax.fire.models.StationSimple;
 
@@ -28,5 +29,13 @@ public class StationMapper {
 				.latitude(entity.getLatitude())
 				.longitude(entity.getLongitude())
 				.build();
+	}
+	
+	public static Station mapAddressIntoStation(Station station, Address address) {
+		station.setAddress(address.getAddress());
+		station.setCity(address.getCity());
+		station.setState(address.getState());
+		station.setZipCode(address.getZipCode());
+		return station;
 	}
 }

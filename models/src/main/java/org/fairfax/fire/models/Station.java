@@ -1,5 +1,7 @@
 package org.fairfax.fire.models;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,4 +23,9 @@ public class Station {
 	private Boolean isVolunteer;
 	private Double latitude;
 	private Double longitude;
+	private String address;
+	private String city;
+	private String state;
+	private String zipCode;
+	private List<Apparatus> apparatus;
 }
