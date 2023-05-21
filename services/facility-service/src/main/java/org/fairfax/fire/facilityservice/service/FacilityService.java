@@ -41,6 +41,7 @@ public class FacilityService {
 				StationMapper.mapAddressIntoStation(station, address);
 			}
 			
+			station.setApparatus(integration.getStationApparatus(station.getStationNumber()));
 			return station;
 		}
 		return null;	
